@@ -35,7 +35,7 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
 end
 
 return {
-  window_decorations = "RESIZE",
+  -- window_decorations = "RESIZE",
   launch_menu = launch_menu,
   color_scheme = "Monokai Remastered",
 }
