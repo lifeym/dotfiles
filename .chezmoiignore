@@ -1,4 +1,7 @@
 README.md
-{{- if ne .chezmoi.os "windows" }}
+{{- if eq .chezmoi.os "windows" }}
+.tmux.conf
+{{- else}}
 Documents/
+_vsvimrc
 {{- end}}
