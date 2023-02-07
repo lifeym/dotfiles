@@ -8,6 +8,11 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
     args = { 'powershell.exe', '-NoLogo' },
   })
 
+  table.insert(launch_menu, {
+    label = 'PSCore',
+    args = { 'pwsh.exe', '-NoLogo' },
+  })
+
   -- Find installed visual studio version(s) and add their compilation
   -- environment command prompts to the menu
   for _, vsvers in
