@@ -1,8 +1,15 @@
 local wezterm = require 'wezterm'
 
 local config = {
-   -- window_decorations = "RESIZE",
-   color_scheme = "Monokai Remastered",
+  -- window_decorations = "RESIZE",
+  color_scheme = "Monokai Remastered",
+  font = wezterm.font_with_fallback {
+    'MesloLGS NF',
+    'IBM Plex Mono',
+  },
+  font_size = 13,
+  initial_cols = 120,
+  initial_rows = 30,
 }
 
 -- launch menu settings
