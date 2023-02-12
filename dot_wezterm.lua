@@ -12,11 +12,17 @@ local config = {
   initial_rows = 30,
 }
 
--- launch menu settings
 local launch_menu = {}
 
+-- mac
+if wezterm.target_triple == 'x86_64-apple-darwin' or wezterm.target_triple == 'aarch64-apple-darwin' then
+  config.font_size = 13
+end
+
+-- windows
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
-  config.default_prog = 'pwsh'
+  config.font_size = 12
+  config.default_prog = {'pwsh'}
   table.insert(launch_menu, {
     label = 'PowerShell',
     args = { 'powershell.exe', '-NoLogo' },
@@ -28,6 +34,6 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
   })
 end
 
-config.launch_men = launch_menu
+config.launch_menu = launch_menu
 
 return config
