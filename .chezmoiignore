@@ -3,6 +3,6 @@ README.md
 .tmux.conf
 {{- else}}
 Documents/
-dot_wslconfig
+.wslconfig
 _vsvimrc
 {{- end}}
