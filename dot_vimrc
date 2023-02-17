@@ -1,7 +1,20 @@
+vim9script
+
 set runtimepath+=~/.vim
+import "C:/Users/lifeym/.vim/vimrcs/zy.vim"
+var plugs = {
+    start: [
+        { "type": "github", "url": "jiangmiao/auto-pairs" }
+    ],
+    opt: [],
+    archieves: []
+}
+var z = zy.Zy.new("~/.cache/zy/.cache")
+z.Install(plugs)
+
 source ~/.vim/vimrcs/basic.vim
 source ~/.vim/vimrcs/filetypes.vim
-"source ~/.vim/vimrcs/plugins_config.vim
+# source ~/.vim/vimrcs/plugins_config.vim
 source ~/.vim/vimrcs/extended.vim
 
 try
