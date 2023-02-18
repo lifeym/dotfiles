@@ -1,20 +1,28 @@
 vim9script
 
 set runtimepath+=~/.vim
-import "C:/Users/lifeym/.vim/vimrcs/zy.vim"
-var plugs = {
-    start: [
-        { "type": "github", "url": "jiangmiao/auto-pairs" }
-    ],
-    opt: [],
-    archieves: []
-}
-var z = zy.Zy.new("~/.cache/zy/.cache")
-z.Install(plugs)
+import "~/.vim/vimrcs/zy.vim"
+const packs = [
+    {
+        name: "bundles",
+        start: [
+            { type: "github", url: "jiangmiao/auto-pairs" },
+            { type: "github", url: "jlanzarotta/bufexplorer" },
+            { type: "github", url: "preservim/nerdtree" },
+        ],
+        opt: [],
+        archieves: []
+    }
+]
+
+system("rm -r " .. expand("~/.cache/zy"))
+system("rm -r " .. expand("~/.vim/pack/bundles"))
+var z = zy.Zy.new("~/.cache/zy", "~/.vim")
+z.InstallPack(packs[0])
 
 source ~/.vim/vimrcs/basic.vim
 source ~/.vim/vimrcs/filetypes.vim
-# source ~/.vim/vimrcs/plugins_config.vim
+#source ~/.vim/vimrcs/plugins_config.vim
 source ~/.vim/vimrcs/extended.vim
 
 try
