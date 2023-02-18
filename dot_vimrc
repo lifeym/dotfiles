@@ -9,16 +9,17 @@ const packs = [
             { type: "github", url: "jiangmiao/auto-pairs" },
             { type: "github", url: "jlanzarotta/bufexplorer" },
             { type: "github", url: "preservim/nerdtree" },
+            { type: "github", url: "itchyny/lightline.vim" },
+            { type: "github", url: "dense-analysis/ale" },
+            { type: "github", url: "tpope/vim-commentary" },
         ],
         opt: [],
         archieves: []
     }
 ]
 
-system("rm -r " .. expand("~/.cache/zy"))
-system("rm -r " .. expand("~/.vim/pack/bundles"))
 var z = zy.Zy.new("~/.cache/zy", "~/.vim")
-z.InstallPack(packs[0])
+z.Install(packs)
 
 source ~/.vim/vimrcs/basic.vim
 source ~/.vim/vimrcs/filetypes.vim
