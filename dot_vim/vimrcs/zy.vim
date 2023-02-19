@@ -33,13 +33,18 @@ export class Zy
         endif
 
         def MakePluginDir(sub: string): string
-            const result = this._packPath .. "/pack/" .. pack.name .. "/" .. sub
-            silent! mkdir(expand(result), 'p')
-            return result
+            return this._packPath .. "/pack/" .. pack.name .. "/" .. sub
         enddef
 
         def InstallToLocation(sub: string): void
-            const installTo = MakePluginDir("start")
+            const installTo = MakePluginDir(sub)
+            if !has_key(pack, sub) || len(pack[sub]) == 0
+                if clean 
+                    delete(installTo, "rf")
+                endif
+                return
+            endif
+
             final allDirs = {}
             if clean
                 for d in glob(expand(installTo))
@@ -47,7 +52,7 @@ export class Zy
                 endfor
             endif
 
-            for plugin in pack.start
+            for plugin in pack[sub]
                 const pluginDir = this.Private_InstallOne(plugin, installTo, action)
                 if pluginDir != null_string && clean
                     remove(allDirs, pluginDir)
@@ -61,13 +66,8 @@ export class Zy
             endif
         enddef
 
-        if has_key(pack, "start")
-            InstallToLocation("start")
-        endif
-
-        if has_key(pack, "opt")
-            InstallToLocation("opt")
-        endif
+        InstallToLocation("start")
+        InstallToLocation("opt")
 
         silent! helptags ALL
     enddef
@@ -116,7 +116,6 @@ abstract class Utils
             && (has('mac') || has('macunix') || has('gui_macvim') || (!isdirectory('/proc') && executable('sw_vers')))
     enddef
 endclass
-
 
 def Error(...msglist: list<string>): void
     for msg in msglist

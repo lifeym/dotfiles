@@ -28,8 +28,15 @@ set guioptions-=l
 set guioptions-=L
 
 " Colorscheme
-set background=dark
-colorscheme peaksea
+packadd! sonokai
+" set background=dark
+if has('termguicolors')
+    set termguicolors
+endif
+let g:sonokai_style = 'shusia'
+let g:sonokai_better_performance = 1
+colorscheme sonokai
+let g:lightline.colorscheme = 'sonokai'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

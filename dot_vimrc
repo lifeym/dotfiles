@@ -1,32 +1,48 @@
 vim9script
 
-set runtimepath+=~/.vim
+if has("win32") || has("win64")
+    set runtimepath+=$HOME/.vim
+endif
+
 import "~/.vim/vimrcs/zy.vim"
 const packs = [
     {
-        name: "bundles",
+        name: "bundle",
         start: [
-            { type: "github", url: "jiangmiao/auto-pairs" },
-            { type: "github", url: "jlanzarotta/bufexplorer" },
-            { type: "github", url: "preservim/nerdtree" },
-            { type: "github", url: "itchyny/lightline.vim" },
-            { type: "github", url: "dense-analysis/ale" },
-            { type: "github", url: "tpope/vim-commentary" },
+            { url: "jiangmiao/auto-pairs" },
+            { url: "jlanzarotta/bufexplorer" },
+            { url: "preservim/nerdtree" },
+            { url: "dense-analysis/ale" },
+            { url: "itchyny/lightline.vim" },
+            { url: "maximbaz/lightline-ale" },
+            { url: "tpope/vim-surround" },
+            { url: "tpope/vim-commentary" },
+            { url: "tpope/vim-abolish" },
+            { url: "editorconfig/editorconfig-vim" },
+            { url: "terryma/vim-expand-region" },
+            { url: "mg979/vim-visual-multi" },
+            { url: "yegappan/mru" },
+            { url: "junegunn/fzf" },
+            { url: "junegunn/fzf.vim" },
         ],
-        opt: [],
-        archieves: []
+    },
+    {
+        name: "colors",
+        opt: [
+            { url: "sainnhe/sonokai" }
+        ],
     }
 ]
 
-var z = zy.Zy.new("~/.cache/zy", "~/.vim")
+const z = zy.Zy.new("~/.cache/zy", "~/.vim")
 z.Install(packs)
 
 source ~/.vim/vimrcs/basic.vim
 source ~/.vim/vimrcs/filetypes.vim
-#source ~/.vim/vimrcs/plugins_config.vim
+source ~/.vim/vimrcs/plugins_config.vim
 source ~/.vim/vimrcs/extended.vim
 
 try
-source ~/.vimrc.local
+    source ~/.vimrc.local
 catch
 endtry
