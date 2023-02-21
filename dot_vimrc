@@ -2,28 +2,37 @@ vim9script
 
 if has("win32") || has("win64")
     set runtimepath+=$HOME/.vim
+    set packpath+=$HOME/.vim
 endif
 
-import "~/.vim/vimrcs/zy.vim"
+import expand("~/.vim/vimrcs/zy.vim")
 const packs = [
-    {
+    {    
         name: "bundle",
         start: [
+            # For better editting
+            { url: "editorconfig/editorconfig-vim" },
             { url: "jiangmiao/auto-pairs" },
             { url: "jlanzarotta/bufexplorer" },
             { url: "preservim/nerdtree" },
             { url: "dense-analysis/ale" },
             { url: "itchyny/lightline.vim" },
-            { url: "maximbaz/lightline-ale" },
             { url: "tpope/vim-surround" },
             { url: "tpope/vim-commentary" },
             { url: "tpope/vim-abolish" },
-            { url: "editorconfig/editorconfig-vim" },
             { url: "terryma/vim-expand-region" },
             { url: "mg979/vim-visual-multi" },
             { url: "yegappan/mru" },
             { url: "junegunn/fzf" },
             { url: "junegunn/fzf.vim" },
+
+            # For bettoer programming
+            { url: "maximbaz/lightline-ale" },
+            # { url: "sirver/ultisnips" },
+            # { url: "honza/vim-snippets" },
+            # For syntaxing
+            { url: "rust-lang/rust.vim" },
+            { url: "fatih/vim-go" },
         ],
     },
     {

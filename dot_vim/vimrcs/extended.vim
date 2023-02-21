@@ -50,11 +50,11 @@ autocmd! bufwritepost ~/.vimrc.local source ~/.vimrc.local
 " => Turn persistent undo on 
 "    means that you can undo even when you close a buffer/VIM
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-try
-    set undodir=~/.local/share/vim/undodir
-    set undofile
-catch
-endtry
+" try
+    " set undodir=~/.local/share/vim/undodir
+    " set undofile
+" catch
+" endtry
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -78,10 +78,6 @@ cnoremap <C-K>		<C-U>
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
-" Map ½ to something useful
-map ½ $
-cmap ½ $
-imap ½ $
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -112,26 +108,27 @@ iab xdate <C-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Omni complete functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+" autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+" set omnifunc=syntaxcomplete#Complete
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ack searching and cope displaying
 "    requires ack.vim - it's much better than vimgrep/grep
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Use the the_silver_searcher if possible (much faster than Ack)
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep --smart-case'
-endif
+" if executable('ag')
+"   let g:ackprg = 'ag --vimgrep --smart-case'
+" endif
 
-" When you press gv you Ack after the selected text
-vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
+" " When you press gv you Ack after the selected text
+" vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
 
-" Open Ack and put the cursor in the right position
-map <leader>g :Ack 
+" " Open Ack and put the cursor in the right position
+" map <leader>g :Ack 
 
-" When you press <leader>r you can search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
+" " When you press <leader>r you can search and replace the selected text
+" vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
 
 " Do :help cope if you are unsure what cope is. It's super useful!
 "
@@ -178,60 +175,4 @@ endfunc
 
 func! CurrentFileDir(cmd)
     return a:cmd . " " . expand("%:p:h") . "/"
-endfunc
-
-"=================================================================================
-"
-"   Following file contains the commands on how to run the currently open code.
-"   The default mapping is set to F5 like most code editors.
-"   Change it as you feel comfortable with, keeping in mind that it does not
-"   clash with any other keymapping.
-"
-"   NOTE: Compilers for different systems may differ. For example, in the case
-"   of C and C++, we have assumed it to be gcc and g++ respectively, but it may
-"   not be the same. It is suggested to check first if the compilers are installed
-"   before running the code, or maybe even switch to a different compiler.
-"
-"   NOTE: Adding support for more programming languages
-"
-"   Just add another elseif block before the 'endif' statement in the same
-"   way it is done in each case. Take care to add tabbed spaces after each
-"   elseif block (similar to python). For example:
-"
-"   elseif &filetype == '<your_file_extension>'
-"       exec '!<your_compiler> %'
-"
-"   NOTE: The '%' sign indicates the name of the currently open file with extension.
-"         The time command displays the time taken for execution. Remove the
-"         time command if you dont want the system to display the time
-"
-"=================================================================================
-
-map <F5> :call CompileRun()<CR>
-imap <F5> <Esc>:call CompileRun()<CR>
-vmap <F5> <Esc>:call CompileRun()<CR>
-
-func! CompileRun()
-exec "w"
-if &filetype == 'c'
-    exec "!gcc % -o %<"
-    exec "!time ./%<"
-elseif &filetype == 'cpp'
-    exec "!g++ % -o %<"
-    exec "!time ./%<"
-elseif &filetype == 'java'
-    exec "!javac %"
-    exec "!time java %"
-elseif &filetype == 'sh'
-    exec "!time bash %"
-elseif &filetype == 'python'
-    exec "!time python3 %"
-elseif &filetype == 'html'
-    exec "!google-chrome % &"
-elseif &filetype == 'go'
-    exec "!go build %<"
-    exec "!time go run %"
-elseif &filetype == 'matlab'
-    exec "!time octave %"
-endif
 endfunc

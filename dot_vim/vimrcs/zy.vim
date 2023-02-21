@@ -32,8 +32,9 @@ export class Zy
             return
         endif
 
+        const packRoot = this._packPath .. "/pack/"
         def MakePluginDir(sub: string): string
-            return this._packPath .. "/pack/" .. pack.name .. "/" .. sub
+            return packRoot .. pack.name .. "/" .. sub
         enddef
 
         def InstallToLocation(sub: string): void
