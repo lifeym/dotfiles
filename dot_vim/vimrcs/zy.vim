@@ -46,9 +46,9 @@ export class Zy
                 return
             endif
 
-            final allDirs = {}
+            var allDirs = {}
             if clean
-                for d in glob(expand(installTo))
+                for d in glob(installTo .. "/*", false, true, false)
                     allDirs[d] = 1
                 endfor
             endif
@@ -56,6 +56,9 @@ export class Zy
             for plugin in pack[sub]
                 const pluginDir = this.Private_InstallOne(plugin, installTo, action)
                 if pluginDir != null_string && clean
+                    # if !has_key(allDirs, pluginDir)
+                    #     echo pluginDir
+                    # endif
                     remove(allDirs, pluginDir)
                 endif
             endfor

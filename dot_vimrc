@@ -1,7 +1,7 @@
 vim9script
 
 if has("win32") || has("win64")
-    set runtimepath+=$HOME/.vim
+    # set runtimepath+=$HOME/.vim
     set packpath+=$HOME/.vim
 endif
 
@@ -30,6 +30,7 @@ const packs = [
             { url: "maximbaz/lightline-ale" },
             # { url: "sirver/ultisnips" },
             # { url: "honza/vim-snippets" },
+
             # For syntaxing
             { url: "rust-lang/rust.vim" },
             { url: "fatih/vim-go" },
@@ -44,7 +45,7 @@ const packs = [
 ]
 
 const z = zy.Zy.new("~/.cache/zy", "~/.vim")
-z.Install(packs)
+z.Install(packs, true)
 
 source ~/.vim/vimrcs/basic.vim
 source ~/.vim/vimrcs/filetypes.vim
