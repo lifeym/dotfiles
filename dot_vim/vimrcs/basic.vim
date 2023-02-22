@@ -127,8 +127,12 @@ endif
 " Add a bit extra margin to the left
 set foldcolumn=1
 
+" Helpful to see cmd typed, but set this off if your terminal is slow
 set showcmd
+
+" Show line number
 set nu
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -207,7 +211,7 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-"map <space> /
+map <space> za
 "map <C-space> ?
 
 " Disable highlight when <leader><cr> is pressed

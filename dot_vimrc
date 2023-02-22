@@ -25,6 +25,7 @@ const packs = [
             { url: "yegappan/mru" },
             { url: "junegunn/fzf" },
             { url: "junegunn/fzf.vim" },
+            { url: "voldikss/vim-floaterm" },
 
             # For bettoer programming
             { url: "maximbaz/lightline-ale" },
@@ -34,6 +35,10 @@ const packs = [
             # For syntaxing
             { url: "rust-lang/rust.vim" },
             { url: "fatih/vim-go" },
+
+            # GIT intergration
+            { url: "tpope/vim-fugitive" },
+            { url: "airblade/vim-gitgutter" },
         ],
     },
     {
