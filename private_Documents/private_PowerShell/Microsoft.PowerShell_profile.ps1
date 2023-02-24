@@ -1,11 +1,31 @@
-$env:Path += ";$HOME\bin"
-Set-Alias -Name:"which" -Value:"Get-Command" -Option:"AllScope" 
+# Util Functions {{{
+#
+# Manage $env:Path
+Function Set-EnvPath {
+    param (
+        [string]$AddPath,
+        [string]$RemovePath
+    )
 
-# This require both fzf and ripgrep installed
-set FZF_DEFAULT_COMMAND='rg'
+    $regexPaths = @()
+    if ($PSBoundParameters.Keys -contains 'AddPath'){
+        $regexPaths += [regex]::Escape($AddPath)
+    }
+
+    if ($PSBoundParameters.Keys -contains 'RemovePath'){
+        $regexPaths += [regex]::Escape($RemovePath)
+    }
+    
+    $arrPath = $env:Path -split ';'
+    foreach ($path in $regexPaths) {
+        $arrPath = $arrPath | Where-Object {$_ -notMatch "^$path\\?"}
+    }
+
+    $env:Path = ($arrPath + $addPath) -join ';'
+}
 
 # For broot to run with powershell
-# See https://github.com/Canop/broot/issues/159 {{{
+# See https://github.com/Canop/broot/issues/159
 function br {
     $tempFile = New-TemporaryFile
     try {
@@ -30,9 +50,13 @@ function br {
         Remove-Item -force $tempFile
     }
 }
+#
+# }}}
 
-$isDotSourced = $MyInvocation.InvocationName -eq '.' -or $MyInvocation.Line -eq ''
-if (-not $isDotSourced) {
-    br $args
-}
-# end of broot }}}
+###############################################################################
+Set-Alias -Name:"which" -Value:"Get-Command" -Option:"AllScope" 
+
+# This require both fzf and ripgrep installed
+set FZF_DEFAULT_COMMAND='rg'
+
+Set-EnvPath -AddPath "$HOME\bin"
