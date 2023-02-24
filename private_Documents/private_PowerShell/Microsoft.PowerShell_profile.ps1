@@ -1,2 +1,5 @@
+$env:Path += ";$HOME\bin"
 Set-Alias -Name:"which" -Value:"Get-Command" -Option:"AllScope" 
-Get-Command oh-my-posh *> $null && oh-my-posh init pwsh --config "${HOME}\AppData\Local\Programs\oh-my-posh\themes\powerlevel10k_rainbow.omp.json" | Invoke-Expression
+
+# This require both fzf and ripgrep installed
+set FZF_DEFAULT_COMMAND='rg'
