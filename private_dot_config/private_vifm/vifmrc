@@ -1,0 +1,7 @@
+source vifmrc_default
+
+colorscheme solarized-dark
+set viewcolumns=*{name}..,16{mtime},7{size}
+
+" Open folder with VSCode
+filetype */ code %c
