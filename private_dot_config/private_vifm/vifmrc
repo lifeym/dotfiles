@@ -16,10 +16,6 @@ if executable('vim')
     set vicmd=vim
 elseif executable('nvim')
     set vicmd=nvim
-elseif executable('elvis')
-    set vicmd=elvis\ -G\ termcap
-elseif executable('vile')
-    set vicmd=vile
 elseif $EDITOR != ''
     echo 'Note: using `'.$EDITOR.'` as an editor'
     let &vicmd = $EDITOR
@@ -104,6 +100,15 @@ endif
 " Set custom status line look
 set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
 
+" Set Shell for windows
+if has('win')
+    if executable('pwsh')
+        set shell=pwsh
+    elseif executable('powershell')
+        set shell=powershell
+    endif
+endif
+
 " ------------------------------------------------------------------------------
 " Bookmarks
 " ------------------------------------------------------------------------------
@@ -179,6 +184,7 @@ command! reload :write | restart full
 
 " Extract zip files
 filetype {*.zip},<application/zip,application/java-archive>
+       \ {Extract to}
        \ mkdir %f:r && tar -vxf %f --directory %f:r
 fileviewer {*.zip,*.jar,*.war,*.ear},
           \<application/zip,application/java-archive>
@@ -211,7 +217,6 @@ fileviewer {*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,*.tar.zst,
 " Displaying pictures in terminal
 " fileviewer *.jpg,*.png shellpic %c
 
-
 " Open folder with VSCode
 filetype */
     \ {Open With VSCode} code %c
@@ -222,11 +227,14 @@ filetype */
 " uncommenting one of lines below will result in ignoring 'vi[x]cmd' option
 " for unknown file types.
 
-" For OS X:
 if has('win')
-    filetype * explorer %"f &
-else
+    filetype * explorer %f &
+elseif executable('open')
+    " For OS X:
     filetype * open
+else
+    " For nix like
+    filetype * xdg-open
 endif
 
 " ------------------------------------------------------------------------------
@@ -263,7 +271,13 @@ nnoremap o :!mvim --remote-tab-silent %f<cr>
 nnoremap O :!mvim %f<cr>
 
 " Open file in the background using its default program
-nnoremap gb :!open -g %f<cr>
+if has('win')
+    nnoremap gb :!explorer %f &<cr>
+elseif executable('open')
+    nnoremap gb :!open -g %f<cr>
+else
+    nnoremap gb :file &<cr>l
+endif
 
 " Yank current directory path into the clipboard
 nnoremap yd :!printf %d | pbcopy<cr>
@@ -310,8 +324,35 @@ nnoremap <a-o> :sync %c<cr>
 nnoremap <c-u> <c-w>x
 
 " Bookmark quick access
-nnoremap <c-b> :bmarks<cr>
-nnoremap <c-d> :bmark<space>
+nnoremap <a-b> :bmarks<cr>
+nnoremap <a-d> :bmark<space>
+
+" Tab quick access
+" <a-1>... keymaping is not supported in windows
+if has('win')
+    nnoremap <a-f1> 1gt
+    nnoremap <a-f2> 2gt
+    nnoremap <a-f3> 3gt
+    nnoremap <a-f4> 4gt
+    nnoremap <a-f5> 5gt
+    nnoremap <a-f6> 6gt
+    nnoremap <a-f7> 7gt
+    nnoremap <a-f8> 8gt
+    nnoremap <a-f9> 9gt
+    nnoremap <a-f10> 10gt
+else
+    nnoremap <a-1> 1gt
+    nnoremap <a-2> 2gt
+    nnoremap <a-3> 3gt
+    nnoremap <a-4> 4gt
+    nnoremap <a-5> 5gt
+    nnoremap <a-6> 6gt
+    nnoremap <a-7> 7gt
+    nnoremap <a-8> 8gt
+    nnoremap <a-9> 9gt
+    nnoremap <a-0> :tabnew<cr>
+endif
+
 
 " ------------------------------------------------------------------------------
 " Various customization examples
