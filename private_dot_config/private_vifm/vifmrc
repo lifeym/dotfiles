@@ -147,6 +147,9 @@ command! make !!make %a
 command! mkcd :mkdir %a | cd %a
 command! reload :write | restart full
 
+" Git commands
+command! GExport :execute fnameescape(system('git archive --format=zip --output=%d:t.zip %a'))
+
 " ------------------------------------------------------------------------------
 " File types association
 " ------------------------------------------------------------------------------
@@ -329,6 +332,7 @@ nnoremap <a-d> :bmark<space>
 
 " Tab quick access
 " <a-1>... keymaping is not supported in windows
+nnoremap gn :tabnew<cr>
 if has('win')
     nnoremap <a-f1> 1gt
     nnoremap <a-f2> 2gt
@@ -339,7 +343,6 @@ if has('win')
     nnoremap <a-f7> 7gt
     nnoremap <a-f8> 8gt
     nnoremap <a-f9> 9gt
-    nnoremap <a-f10> 10gt
 else
     nnoremap <a-1> 1gt
     nnoremap <a-2> 2gt
@@ -350,7 +353,6 @@ else
     nnoremap <a-7> 7gt
     nnoremap <a-8> 8gt
     nnoremap <a-9> 9gt
-    nnoremap <a-0> :tabnew<cr>
 endif
 
 
