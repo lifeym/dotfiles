@@ -147,6 +147,10 @@ command! make !!make %a
 command! mkcd :mkdir %a | cd %a
 command! reload :write | restart full
 
+" Copy, move file with a [file conflict] dialog
+command! cp :yank | winrun , put
+command! mv :yank | winrun , put!
+
 " Git commands
 command! GExport :execute fnameescape(system('git archive --format=zip --output=%d:t.zip %a'))
 
@@ -313,8 +317,8 @@ nnoremap ,w :set wrap!<cr>
 " Example of standard two-panel file managers mappings
 nnoremap <f3> :!less %f<cr>
 nnoremap <f4> :edit<cr>
-nnoremap <f5> :copy<cr>
-nnoremap <f6> :move<cr>
+nnoremap <f5> :cp<cr>
+nnoremap <f6> :mv<cr>
 nnoremap <f7> :mkdir<space>
 nnoremap <f8> :delete<cr>
 
