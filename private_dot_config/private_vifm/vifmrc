@@ -152,7 +152,7 @@ command! cp :yank | winrun , put
 command! mv :yank | winrun , put!
 
 " Git commands
-command! GExport :execute fnameescape(system('git archive --format=zip --output=%d:t.zip %a'))
+command! Garchive :execute fnameescape(system('git archive --format=zip --output=%d:t.zip %a'))
 
 " ------------------------------------------------------------------------------
 " File types association
