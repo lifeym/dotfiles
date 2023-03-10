@@ -190,12 +190,21 @@ command! Garchive :execute fnameescape(system('git archive --format=zip --output
 " program.  There is also %FOREGROUND, which is useful for entering passwords.
 
 " Extract zip files
+if has('win')
 filetype {*.zip},<application/zip,application/java-archive>
        \ {Extract to}
        \ mkdir %f:r && tar -vxf %f --directory %f:r
 fileviewer {*.zip,*.jar,*.war,*.ear},
           \<application/zip,application/java-archive>
           \ tar -tf %f
+else
+filetype {*.zip},<application/zip,application/java-archive>
+       \ {Extract to}
+       \ mkdir %f:r && tar -vxf %f --directory %f:r
+fileviewer {*.zip,*.jar,*.war,*.ear},
+          \<application/zip,application/java-archive>
+          \ zip -sf %f
+end
 
 " Extract tar archives
 filetype {*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,*.tar.zst,
