@@ -1,0 +1,10 @@
+[user]
+	name = {{ .name | quote }}
+	email = {{ .email | quote }}
+[core]
+{{- if eq .chezmoi.os "windows" }}
+	autocrlf = true
+{{- else}}
+	autocrlf = input
+{{- end}}
+	safecrlf = warn
