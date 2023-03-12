@@ -8,3 +8,11 @@
 	autocrlf = input
 {{- end}}
 	safecrlf = warn
+{{- if eq .chezmoi.os "darwin" }}
+[credential "https://github.com"]
+	helper =
+	helper = !/usr/local/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/usr/local/bin/gh auth git-credential
+{{- end}}
