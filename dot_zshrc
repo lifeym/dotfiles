@@ -24,11 +24,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-autoload -Uz compinit && compinit
-if [[ ! ~/.zcompdump.zwc -nt ~/.zcompdump ]]; then
-  zcompile -R -- ~/.zcompdump.zwc ~/.zcompdump
-fi
-
 # Source your static plugins file.
 source $zsh_plugins
 
