@@ -1,0 +1,35 @@
+# Oh my zsh
+ohmyzsh/ohmyzsh path:lib/clipboard.zsh
+ohmyzsh/ohmyzsh path:lib/directories.zsh
+ohmyzsh/ohmyzsh path:plugins/copybuffer
+ohmyzsh/ohmyzsh path:plugins/copyfile
+ohmyzsh/ohmyzsh path:plugins/copypath
+ohmyzsh/ohmyzsh path:plugins/dirhistory
+ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/history
+ohmyzsh/ohmyzsh path:plugins/jsontools
+ohmyzsh/ohmyzsh path:plugins/magic-enter
+ohmyzsh/ohmyzsh path:plugins/sudo
+ohmyzsh/ohmyzsh path:plugins/vi-mode
+ohmyzsh/ohmyzsh path:plugins/z
+#ohmyzsh/ohmyzsh path:plugins/extract
+#ohmyzsh/ohmyzsh path:plugins/fancy-ctrl-z
+
+# Other standalones
+zsh-users/zsh-syntax-highlighting
+romkatv/powerlevel10k
+
+
+#
+# Completions
+zsh-users/zsh-completions path:src kind:fpath
+
+# now, configure and run compinit to initialize completions
+belak/zsh-utils path:completion
+#
+#
+
+
+# These popular core plugins should be loaded at the end
+zsh-users/zsh-autosuggestions kind:defer
+zsh-users/zsh-history-substring-search
