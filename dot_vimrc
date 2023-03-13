@@ -6,8 +6,8 @@ if has("win32") || has("win64")
 endif
 
 import expand("~/.vim/vimrcs/zy.vim")
-const packs = [
-    {    
+var packs = [
+    {
         name: "bundle",
         start: [
             # For better editting
@@ -50,6 +50,23 @@ const packs = [
 ]
 
 const z = zy.Zy.new("~/.cache/zy", "~/.vim")
+
+# Use ghproxy to download from github
+const EditUrl = (v) => "https://ghproxy.com/https://github.com/" .. v
+for p in packs
+    if (has_key(p, "start"))
+        for pl in p.start
+            pl.url = EditUrl(pl.url)
+        endfor
+    endif
+
+    if (has_key(p, "opt"))
+        for pl in p.opt
+            pl.url = EditUrl(pl.url)
+        endfor
+    endif
+endfor
+
 z.Install(packs, true)
 
 source ~/.vim/vimrcs/basic.vim
