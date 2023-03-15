@@ -51,7 +51,8 @@ Set-PSReadLineOption @PSReadLineOptions
 # An oh-my-zsh copypath like function
 # Copy current path to clipboard
 function Copy-Path {
-    (pwd).Path | clip
+    # Do NOT use "clip" which produces unwanted crlf at the end
+    (pwd).Path | Set-Clipboard
 }
 
 # An oh-my-zsh copyfile like function
@@ -61,7 +62,8 @@ function Copy-File {
         [string]$File
     )
 
-    cat $File | clip
+    # Do NOT use "clip" which produces unwanted crlf at the end
+    cat $File | Set-Clipboard
 }
 
 # An oh-my-zsh magic-enter like plugin
@@ -92,7 +94,7 @@ Set-PSReadLineKeyHandler -Chord Ctrl+o -Description "Copy current command input 
 
     # If command line is NOT empty...
     if( $currentInput.Length -gt 0 ) {
-        echo $currentInput | clip
+        $currentInput | Set-Clipboard
     }
 }
 
