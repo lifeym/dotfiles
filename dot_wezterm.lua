@@ -21,6 +21,8 @@ end
 
 -- windows
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+  -- Wezterm become blinking when using WebGpu in VM
+  config.front_end = 'Software'
   config.font_size = 12
   config.default_prog = {'pwsh'}
   table.insert(launch_menu, {
