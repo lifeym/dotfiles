@@ -100,6 +100,28 @@ Set-PSReadLineKeyHandler -Chord Ctrl+o -Description "Copy current command input 
 
 Set-Alias -Name:"which" -Value:"Get-Command" -Option:"AllScope"
 
+# Useful cd.. functions
+function cdup {Set-Location -Path ..}
+function cdup2 {Set-Location -Path ../..}
+function cdup3 {Set-Location -Path ../../..}
+function cdup4 {Set-Location -Path ../../../..}
+function cdup5 {Set-Location -Path ../../../../..}
+function cdup6 {Set-Location -Path ../../../../../..}
+function cdup7 {Set-Location -Path ../../../../../../..}
+function cdup8 {Set-Location -Path ../../../../../../../..}
+Set-Alias -Name:"cd.." -Value:"cdup" -Option:"AllScope"
+Set-Alias -Name:"cd..." -Value:"cdup2" -Option:"AllScope"
+Set-Alias -Name:"cd...." -Value:"cdup3" -Option:"AllScope"
+Set-Alias -Name:"cd....." -Value:"cdup4" -Option:"AllScope"
+Set-Alias -Name:"cd......" -Value:"cdup5" -Option:"AllScope"
+Set-Alias -Name:"cd......." -Value:"cdup6" -Option:"AllScope"
+Set-Alias -Name:"cd........" -Value:"cdup7" -Option:"AllScope"
+Set-Alias -Name:"cd........." -Value:"cdup8" -Option:"AllScope"
+
+function ll() {
+    ls -Exclude ".*"
+}
+
 # This require both fzf and ripgrep installed
 $env:FZF_DEFAULT_COMMAND = 'rg --files'
 
