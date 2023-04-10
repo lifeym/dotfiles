@@ -74,6 +74,16 @@ source ~/.vim/vimrcs/filetypes.vim
 source ~/.vim/vimrcs/plugins_config.vim
 source ~/.vim/vimrcs/extended.vim
 
+nnoremap <C-n> :nohl<enter>
+nnoremap <leader>a ggVG
+inoremap jj <esc>
+
+# disable arrow-keys
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
 try
     source ~/.vimrc.local
 catch
