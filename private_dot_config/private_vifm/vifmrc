@@ -153,6 +153,14 @@ command! mv :yank | winrun , put!
 
 " Git commands
 command! Garchive :execute fnameescape(system('git archive --format=zip --output=%d:t.zip %a'))
+command! Gpull !!git pull
+command! Gadd !!git add %a
+command! Gpush !!git push
+if has('win')
+    command! Gstatus !!git status && pause
+else
+    command! Gstatus !!git status && read
+endif
 
 " ------------------------------------------------------------------------------
 " File types association
