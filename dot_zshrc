@@ -1,6 +1,6 @@
 # Clone antidote if it's missing.
 [[ -d ${ZDOTDIR:-~}/.antidote ]] ||
-  git clone 'https://ghproxy.com/https://github.com/mattmc3/antidote' ${ZDOTDIR:-~}/.antidote
+  git clone --depth=1 'https://ghproxy.com/https://github.com/mattmc3/antidote' ${ZDOTDIR:-~}/.antidote
 
 # Set the name of the static .zsh plugins file antidote will generate.
 zsh_plugins=${ZDOTDIR:-~}/.zsh_plugins.zsh
@@ -23,6 +23,13 @@ fi
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+# Compdef is basically a function used by zsh for load the auto-completions.
+# The completion system needs to be activated.
+# If you’re using something like oh-my-zsh then this is already taken care of,
+# otherwise you’ll need to add the following to your ~/.zshrc
+autoload -Uz compinit
+compinit
 
 # Source your static plugins file.
 source $zsh_plugins
