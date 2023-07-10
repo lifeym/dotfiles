@@ -109,14 +109,14 @@ function cdup5 {Set-Location -Path ../../../../..}
 function cdup6 {Set-Location -Path ../../../../../..}
 function cdup7 {Set-Location -Path ../../../../../../..}
 function cdup8 {Set-Location -Path ../../../../../../../..}
-Set-Alias -Name:"cd.." -Value:"cdup" -Option:"AllScope"
-Set-Alias -Name:"cd..." -Value:"cdup2" -Option:"AllScope"
-Set-Alias -Name:"cd...." -Value:"cdup3" -Option:"AllScope"
-Set-Alias -Name:"cd....." -Value:"cdup4" -Option:"AllScope"
-Set-Alias -Name:"cd......" -Value:"cdup5" -Option:"AllScope"
-Set-Alias -Name:"cd......." -Value:"cdup6" -Option:"AllScope"
-Set-Alias -Name:"cd........" -Value:"cdup7" -Option:"AllScope"
-Set-Alias -Name:"cd........." -Value:"cdup8" -Option:"AllScope"
+Set-Alias -Name:".." -Value:"cdup" -Option:"AllScope"
+Set-Alias -Name:"..." -Value:"cdup2" -Option:"AllScope"
+Set-Alias -Name:"...." -Value:"cdup3" -Option:"AllScope"
+Set-Alias -Name:"....." -Value:"cdup4" -Option:"AllScope"
+Set-Alias -Name:"......" -Value:"cdup5" -Option:"AllScope"
+Set-Alias -Name:"......." -Value:"cdup6" -Option:"AllScope"
+Set-Alias -Name:"........" -Value:"cdup7" -Option:"AllScope"
+Set-Alias -Name:"........." -Value:"cdup8" -Option:"AllScope"
 
 function ll() {
     ls -Exclude ".*"
