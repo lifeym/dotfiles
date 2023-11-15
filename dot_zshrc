@@ -50,5 +50,7 @@ export FZF_DEFAULT_COMMAND='rg --files'
 export PATH="$HOME/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
+source ~/.kubecfg.sh
+
 # Finally, load machine level customized config
 [[ -s "$HOME/.zsh/.zshrc.local" ]] && source ~/.zsh/.zshrc.local
