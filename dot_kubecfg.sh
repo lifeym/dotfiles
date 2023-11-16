@@ -51,12 +51,12 @@ alias kcuc="kubectl config use-context"
 
 dockerconfigjson() {
     local OPTIND opt ns name user reg_url passwd fmt
-    while getopts ":s:n:u:r:p:f:h" opt ; do
+    while getopts ":n:m:u:r:p:f:h" opt ; do
         case "$opt" in
-            s)   # default character to display if no weather, leave empty for none
+            n)   # default character to display if no weather, leave empty for none
                 ns="$OPTARG"
                 ;;
-            n)   # supply city name instead of using internet
+            m)   # supply city name instead of using internet
                 name="$OPTARG"
                 ;;
             u)   # how often to update weather in seconds
@@ -74,7 +74,7 @@ dockerconfigjson() {
             h)
                 echo "WIP!"
                 ;;
-            \? )
+            \?)
                 echo "Invalid option: -$OPTARG" >&2
                 ;;
             :)
@@ -106,11 +106,10 @@ dockerconfigjson() {
         fi
     fi
 
-    local auth=$(echo -n "$user:$passwd" | base64)
     local json="{
   \"auths\": {
     \"$reg_url\": {
-      \"auth\": \"${auth}\"
+      \"auth\": \"$(echo -n "$user:$passwd" | base64)\"
     }
   }
 }"
@@ -124,7 +123,7 @@ dockerconfigjson() {
     fi
 
     if [[ -z "$name" ]]; then
-        echo "When apply to clusters, -n is required."
+        echo "When apply to clusters, -m is required."
         return 1
     fi
 
