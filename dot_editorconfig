@@ -22,7 +22,7 @@ indent_size = 2
 indent_style = ignore
 insert_final_newline = ignore
 
-# Tab indentation (no size specified)
+# Makefile use tabs for indentation
 [Makefile]
 indent_style = tab
 
@@ -32,4 +32,7 @@ indent_style = tab
 
 [*.md]
 trim_trailing_whitespace = false
+
+[*.{yaml,yml,toml}]
+indent_size = 2
 

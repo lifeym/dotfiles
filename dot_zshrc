@@ -46,7 +46,7 @@ source $zsh_plugins
 export GOPROXY=https://proxy.golang.com.cn,direct
 export FZF_DEFAULT_COMMAND='rg --files'
 
-command -v thefuck > /dev/null 2&>1 && eval $(thefuck --alias)
+command -v thefuck > /dev/null 2>&1 && eval $(thefuck --alias)
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="$HOME/.rd/bin:$PATH"
