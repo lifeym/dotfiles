@@ -57,3 +57,4 @@ source ~/.kubecfg.sh
 
 # Finally, load machine level customized config
 [[ -s "$HOME/.zsh/.zshrc.local" ]] && source ~/.zsh/.zshrc.local
+

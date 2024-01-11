@@ -51,35 +51,36 @@ alias kcuc="kubectl config use-context"
 
 dockerconfigjson() {
     local OPTIND opt ns name user reg_url passwd fmt
-    while getopts ":n:m:u:r:p:f:h" opt ; do
+    while getopts ":n:N:u:r:p:f:h" opt ; do
         case "$opt" in
-            n)   # default character to display if no weather, leave empty for none
+            n)  # namespace for this secret
                 ns="$OPTARG"
                 ;;
-            m)   # supply city name instead of using internet
+            N)  # name for this secret
                 name="$OPTARG"
                 ;;
-            u)   # how often to update weather in seconds
+            u)  # docker user name
                 user="$OPTARG"
                 ;;
-            r)   # weather update alert string to supply, if any
+            r)  # docker registry address
                 reg_url="$OPTARG"
                 ;;
-            p)
+            p)  # docker password/token
                 passwd="$OPTARG"
                 ;;
-            f)
+            f)  # output format: [json | k8s]
                 fmt="$OPTARG"
                 ;;
-            h)
+            h)  # print help message
                 echo "WIP!"
+                return 0
                 ;;
             \?)
                 echo "Invalid option: -$OPTARG" >&2
                 ;;
             :)
                 echo "Option -$OPTARG requires an argument." >&2
-                exit 1
+                return 1
                 ;;
         esac
     done
