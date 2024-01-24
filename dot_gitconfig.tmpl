@@ -10,23 +10,17 @@
 	safecrlf = warn
 {{- if eq .chezmoi.os "darwin" }}
 [credential "https://github.com"]
-	helper =
-	helper = !/usr/local/bin/gh auth git-credential
+    helper = !{{findExecutable "gh" (list "/run/current-system/sw/bin" "/usr/local/bin")}} auth git-credential
 [credential "https://gist.github.com"]
-	helper =
-	helper = !/usr/local/bin/gh auth git-credential
+    helper = !{{findExecutable "gh" (list "/run/current-system/sw/bin" "/usr/local/bin")}} auth git-credential
 {{- else if eq .chezmoi.os "linux" }}
 [credential "https://github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
+    helper = !{{findExecutable "gh" (list "/run/current-system/sw/bin" "/usr/local/bin" "/usr/bin")}} auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
+    helper = !{{findExecutable "gh" (list "/run/current-system/sw/bin" "/usr/local/bin" "/usr/bin")}} auth git-credential
 {{- else if eq .chezmoi.os "windows"}}
 [credential "https://github.com"]
-    helper =
     helper = !'C:\\Program Files\\GitHub CLI\\gh.exe' auth git-credential
 [credential "https://gist.github.com"]
-    helper =
     helper = !'C:\\Program Files\\GitHub CLI\\gh.exe' auth git-credential
 {{- end}}
