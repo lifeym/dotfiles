@@ -1,6 +1,6 @@
 # Clone antidote if it's missing.
 [[ -d ${ZDOTDIR:-~}/.antidote ]] ||
-  git clone --depth=1 'https://ghproxy.com/https://github.com/mattmc3/antidote' ${ZDOTDIR:-~}/.antidote
+  git clone --depth=1 'https://mirror.ghproxy.com/https://github.com/mattmc3/antidote' ${ZDOTDIR:-~}/.antidote
 
 # Set the name of the static .zsh plugins file antidote will generate.
 zsh_plugins=${ZDOTDIR:-~}/.zsh_plugins.zsh
@@ -43,14 +43,11 @@ source $zsh_plugins
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export GOPROXY=https://proxy.golang.com.cn,direct
 export FZF_DEFAULT_COMMAND='rg --files'
 
 command -v thefuck > /dev/null 2>&1 && eval $(thefuck --alias)
 
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="$HOME/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+command -v direnv > /dev/null 2>&1 && eval "$(direnv hook zsh)"
 
 source ~/.zshutils.sh
 source ~/.kubecfg.sh
