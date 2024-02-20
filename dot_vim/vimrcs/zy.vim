@@ -4,8 +4,8 @@ const INSTALL_ACTION_SKIP = 1
 const INSTALL_ACTION_UPDATE = 2
 
 export class Zy
-    this._packPath: string
-    this._cachePath: string
+    var _packPath: string
+    var _cachePath: string
 
     def Private_DoInstall(packs: list<any>, clean: bool, action: number): void
         for pack in packs
