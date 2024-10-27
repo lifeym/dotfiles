@@ -19,7 +19,7 @@ ohmyzsh/ohmyzsh path:plugins/vi-mode
 ohmyzsh/ohmyzsh path:plugins/zoxide
 
 # Prompts
-romkatv/powerlevel10k
+# romkatv/powerlevel10k
 
 #
 # Completions
