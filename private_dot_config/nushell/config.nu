@@ -14,7 +14,7 @@ $env.config = $env.config? | default {} | merge {
     hooks: {
         pre_prompt: [{ null }] # run before the prompt is shown
         env_change: {
-            PWD: (source ~/.nushell/hooks/env_change/PWD/all.nu)
+            PWD: (source hooks/env_change/PWD/all.nu)
             # PWD: [
             #     # direnv
             #     { ||
@@ -26,9 +26,24 @@ $env.config = $env.config? | default {} | merge {
             #     }
             # ]
         }
-        pre_execution: (source ~/.nushell/hooks/pre_execution/all.nu)
+        pre_execution: (source hooks/pre_execution/all.nu)
     }
 }
+
+### utils
+
+# copy file's path to cb's default(system) clipboard
+def copypath [f: string] {
+    $f | path expand | path dirname | do {|| if (which cb | is-empty) {print} else {cb}}
+}
+
+###
+
+### alias
+
+alias ll = ls -al
+
+###
 
 # starship
 use ~/.cache/starship/init.nu
