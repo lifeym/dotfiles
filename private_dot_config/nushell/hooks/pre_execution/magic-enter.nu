@@ -3,7 +3,7 @@
         if ('.git' | path exists) {
             git status -u .
         } else {
-            ^ls -lh
+            ls | print
         }
     }
 }
