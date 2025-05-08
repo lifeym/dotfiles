@@ -48,6 +48,86 @@ alias kc="kubectl config"
 alias kccc="kubectl config current-context"
 alias kcgc="kubectl config get-contexts"
 alias kcuc="kubectl config use-context"
+alias kd="kubectl delete"
+
+# Using kubectl to delete pod(s)
+kdpod() {
+    local OPTIND opt ns podstatus notstatus
+    while getopts ":n:s:h" opt ; do
+        case "$opt" in
+            n) # namespace for pods to be deleted
+                ns="$OPTARG"
+                ;;
+            s) # pod status for pods to be deleted
+                podstatus="$OPTARG"
+                ;;
+            S) # pods which status NOT MATCH parameters to be deleted
+                notstatus="$OPTARG"
+                ;;
+            h) # print help
+                echo "Using kubectl to delete pod(s)."
+                echo "Usage:"
+                echo "\tkdpod -s|-S STATUS [-n]"
+                echo "\t-s STATUS\tStatus of pods to delete. Use kubectl get pod -A to choose."
+                echo "\t-S STATUS\tStatus of pods not matching STATUS will be deleted."
+                echo "\t-n NAMESPACE\tDelete the pods under this NAMESPACE, or empty for searching for all pods."
+                echo "\t-h \t\tPrint this help message."
+                return 0
+                ;;
+            \?)
+                echo "Invalid option: -$OPTARG" >&2
+                ;;
+            :)
+                echo "Option -$OPTARG requires an argument." >&2
+                return 1
+                ;;
+        esac
+    done
+    shift $((OPTIND-1))
+
+    if [[ -z "$podstatus" ]] && [[ -z "$notstatus" ]]; then
+        echo "You should set one of -s and -S"
+        return 1
+    fi
+
+    if [[ -n "$podstatus" ]] && [[ -n "$notstatus" ]]; then
+        echo "You can only set one of -s and -S, not BOTH!"
+        return 1
+    fi
+
+    local poname
+    if [[ -z "$ns" ]]; then
+        # Deal for all namespaces
+        for c in $(kubectl get ns --no-headers | awk '{print $1}'); do
+            if [[ -z "$podstatus" ]]; then
+                poname=$(kubectl get po -n "$c" --no-headers | grep -v "$notstatus" | awk '{print $1}')
+            else
+                poname=$(kubectl get po -n "$c" --no-headers | grep "$podstatus" | awk '{print $1}')
+            fi
+
+            # if no resources found under namespace, then ignore(continue)
+            if [[ -z "$poname" ]]; then
+                continue;
+            fi
+
+            echo "$poname" | xargs -I {} kubectl delete po -n "$c" {}
+        done
+    else
+        # Deal for ns only
+        if [[ -z "$podstatus" ]]; then
+            poname=$(kubectl get po -n "$ns" --no-headers | grep -v "$notstatus" | awk '{print $1}')
+        else
+            poname=$(kubectl get po -n "$ns" --no-headers | grep "$podstatus" | awk '{print $1}')
+        fi
+
+        # if no resources found under namespace, then ignore(continue)
+        if [[ -z "$poname" ]]; then
+            return 0;
+        fi
+
+        echo "$poname" | xargs -I {} kubectl delete po -n "$ns" {}
+    fi
+}
 
 dockerconfigjson() {
     local OPTIND opt ns name user reg_url passwd fmt

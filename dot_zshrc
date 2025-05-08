@@ -1,6 +1,6 @@
 # Clone antidote if it's missing.
 [[ -d ${ZDOTDIR:-~}/.antidote ]] ||
-  git clone --depth=1 'https://mirror.ghproxy.com/https://github.com/mattmc3/antidote' ${ZDOTDIR:-~}/.antidote
+  git clone --depth=1 'https://gh-proxy.com/https://github.com/mattmc3/antidote' ${ZDOTDIR:-~}/.antidote
 
 # Set the name of the static .zsh plugins file antidote will generate.
 zsh_plugins=${ZDOTDIR:-~}/.zsh_plugins.zsh
