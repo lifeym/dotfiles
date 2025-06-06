@@ -18,9 +18,6 @@ ohmyzsh/ohmyzsh path:plugins/sudo
 ohmyzsh/ohmyzsh path:plugins/vi-mode
 ohmyzsh/ohmyzsh path:plugins/zoxide
 
-# Prompts
-# romkatv/powerlevel10k
-
 #
 # Completions
 zsh-users/zsh-syntax-highlighting
@@ -34,3 +31,5 @@ belak/zsh-utils path:completion
 # These popular core plugins should be loaded at the end
 zsh-users/zsh-autosuggestions kind:defer
 zsh-users/zsh-history-substring-search
+
+MichaelAquilina/zsh-you-should-use
