@@ -41,6 +41,9 @@ command -v thefuck > /dev/null 2>&1 && eval $(thefuck --alias)
 
 command -v direnv > /dev/null 2>&1 && eval "$(direnv hook zsh)"
 
+# you-should-use: display all matches
+export YSU_MODE=ALL
+
 source ~/.zshutils.sh
 source ~/.kubecfg.sh
 
