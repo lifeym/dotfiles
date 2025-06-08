@@ -99,6 +99,11 @@ Set-PSReadLineKeyHandler -Chord Ctrl+o -Description "Copy current command input 
 }
 
 Set-Alias -Name:"which" -Value:"Get-Command" -Option:"AllScope"
+Set-Alias -Name:"vi" -Value:"vim"
+
+# Git alias
+function gs {git status .}
+
 
 # Useful cd.. functions
 function cdup {Set-Location -Path ..}
@@ -129,3 +134,11 @@ $env:FZF_DEFAULT_COMMAND = 'rg --files'
 if (-not $env:VIFM) { $env:VIFM = "$HOME\.config\vifm" }
 
 Set-EnvPath -AddPath "$HOME\bin"
+
+Invoke-Expression (&starship init powershell)
+
+# Work around for direnv error:
+#   direnv: error couldn't find a cache directory for direnv
+# See: https://github.com/direnv/direnv/issues/442
+$Env:HOME = $HOME
+Invoke-Expression "$(direnv hook pwsh)"

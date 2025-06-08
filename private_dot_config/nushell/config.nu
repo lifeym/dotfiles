@@ -6,10 +6,6 @@ $env.config = $env.config? | default {} | merge {
         max_size: 1000 # Session has to be reloaded for this to take effect
     }
 
-    filesize: {
-        metric: true # true => KB, MB, GB (ISO standard), false => KiB, MiB, GiB (Windows standard)
-    }
-
     edit_mode: vi # emacs, vi
     hooks: {
         pre_prompt: [{ null }] # run before the prompt is shown
@@ -30,6 +26,16 @@ $env.config = $env.config? | default {} | merge {
     }
 }
 
+# ENV
+$env.EDITOR = "vim"
+
+# Work around for direnv error:
+#   direnv: error Couldn't find a configuration directory for direnv
+# See: https://github.com/direnv/direnv/issues/442
+if (not ('HOME' in $env)) {
+  $env.HOME = $env.HOMEPATH
+}
+
 ### utils
 
 # copy file's path to cb's default(system) clipboard
@@ -42,11 +48,13 @@ def copypath [f: string] {
 ### alias
 
 alias ll = ls -al
+alias vi = vim
 
 ###
 
 # starship
-use ~/.cache/starship/init.nu
+mkdir ($nu.data-dir | path join "vendor/autoload")
+starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 
 # zoxide
-source ~/.cache/zoxide/.zoxide.nu
+zoxide init nushell | save -f ($nu.data-dir | path join "vendor/autoload/zoxide.nu")
