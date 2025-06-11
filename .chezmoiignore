@@ -3,8 +3,9 @@ README.md
 .tmux.conf
 .zshrc
 .zsh_plugins.txt
+.kubecfg.sh
+.zshutils.sh
 {{- else}}
 Documents/
-.wslconfig
 _vsvimrc
 {{- end}}
