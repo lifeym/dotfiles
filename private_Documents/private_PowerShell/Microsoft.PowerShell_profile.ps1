@@ -142,3 +142,4 @@ Invoke-Expression (&starship init powershell)
 # See: https://github.com/direnv/direnv/issues/442
 $Env:HOME = $HOME
 Invoke-Expression "$(direnv hook pwsh)"
+Invoke-Expression (& { (zoxide init powershell | Out-String)  })

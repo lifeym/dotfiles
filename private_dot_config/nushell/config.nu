@@ -33,7 +33,7 @@ $env.EDITOR = "vim"
 #   direnv: error Couldn't find a configuration directory for direnv
 # See: https://github.com/direnv/direnv/issues/442
 if (not ('HOME' in $env)) {
-  $env.HOME = $env.HOMEPATH
+  $env.HOME = $env.HOMEDRIVE + $env.HOMEPATH
 }
 
 ### utils
@@ -51,6 +51,8 @@ alias ll = ls -al
 alias vi = vim
 
 ###
+
+$env.FZF_DEFAULT_COMMAND = "rg --files"
 
 # starship
 mkdir ($nu.data-dir | path join "vendor/autoload")
