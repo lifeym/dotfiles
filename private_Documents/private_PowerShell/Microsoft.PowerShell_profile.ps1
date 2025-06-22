@@ -133,6 +133,15 @@ $env:FZF_DEFAULT_COMMAND = 'rg --files'
 # Set vifm home if not set
 if (-not $env:VIFM) { $env:VIFM = "$HOME\.config\vifm" }
 
+# Git for windows embded a ssh client, which buggy,
+# cause `git clone` to be stuck with ssh protocol in ssh_config.
+# Windows 11 come with `openssh` preinstalled, use this if exists.
+$ssh = get-command -ErrorAction Ignore "ssh"
+if ($ssh) {
+  $env:GIT_SSH = $ssh.Path
+}
+Remove-Variable -Name ssh
+
 Set-EnvPath -AddPath "$HOME\bin"
 
 Invoke-Expression (&starship init powershell)

@@ -54,6 +54,13 @@ alias vi = vim
 
 $env.FZF_DEFAULT_COMMAND = "rg --files"
 
+# Git for windows embded a ssh client, which buggy,
+# cause `git clone` to be stuck with ssh protocol in ssh_config.
+# Windows 11 come with `openssh` preinstalled, use this if exists.
+if ("C:/WINDOWS/System32/OpenSSH/ssh.exe" | path exists) {
+  $env.GIT_SSH = "C:/WINDOWS/System32/OpenSSH/ssh.exe"
+}
+
 # starship
 mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
