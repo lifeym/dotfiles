@@ -1,0 +1,23 @@
+Host red-yingchun
+    Hostname v1.lifeym.xyz
+    User leonardo
+    IdentityFile ~/.ssh/lifeym/id_ed25519
+    AddKeysToAgent yes
+    ForwardAgent yes
+
+Host red-*
+    User lifeym
+    IdentityFile ~/.ssh/lifeym/id_ed25519
+    AddKeysToAgent yes
+
+Host github.com
+    User git
+    IdentityFile ~/.ssh/lifeym/id_ed25519
+    AddKeysToAgent yes
+    ProxyJump red-yingchun
+    # ProxyCommand ncat --proxy red-daiyu:10809 %h %p
+
+Host gitee.com
+    User git
+    IdentityFile ~/.ssh/lifeym/id_ed25519
+    AddKeysToAgent yes
