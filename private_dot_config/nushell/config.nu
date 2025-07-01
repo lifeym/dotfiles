@@ -49,6 +49,7 @@ def copypath [f: string] {
 
 alias ll = ls -al
 alias vi = vim
+alias cat = bat
 
 ###
 
