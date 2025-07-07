@@ -10,6 +10,10 @@ Host red-*
     IdentityFile ~/.ssh/lifeym/id_ed25519
     AddKeysToAgent yes
 
+Host red-daiyu
+    ServerAliveInterval 60
+    ServerAliveCountMax 240
+
 Host github.com
     User git
     IdentityFile ~/.ssh/lifeym/id_ed25519
