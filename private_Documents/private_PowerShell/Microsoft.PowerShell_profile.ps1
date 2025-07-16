@@ -26,27 +26,27 @@ function Set-EnvPath {
 
 ###############################################################################
 
-function OnViModeChange {
-    if ($args[0] -eq 'Command') {
-        # Set the cursor to a blinking block.
-        Write-Host -NoNewLine "`e[1 q"
-    } else {
-        # Set the cursor to a blinking line.
-        Write-Host -NoNewLine "`e[5 q"
-    }
-}
+#function OnViModeChange {
+#    if ($args[0] -eq 'Command') {
+#        # Set the cursor to a blinking block.
+#        Write-Host -NoNewLine "`e[1 q"
+#    } else {
+#        # Set the cursor to a blinking line.
+#        Write-Host -NoNewLine "`e[5 q"
+#    }
+#}
 
-$PSReadLineOptions = @{
-    EditMode = "Vi"
-    ViModeIndicator = "Script"
-    ViModeChangeHandler = $Function:OnViModeChange
-    HistoryNoDuplicates = $true
-    #HistorySearchCursorMovesToEnd = $true
-    Colors = @{
-        "Command" = "#8181f7"
-    }
-}
-Set-PSReadLineOption @PSReadLineOptions
+#$PSReadLineOptions = @{
+#    EditMode = "Vi"
+#    ViModeIndicator = "Script"
+#    ViModeChangeHandler = $Function:OnViModeChange
+#    HistoryNoDuplicates = $true
+#    #HistorySearchCursorMovesToEnd = $true
+#    Colors = @{
+#        "Command" = "#8181f7"
+#    }
+#}
+#Set-PSReadLineOption @PSReadLineOptions
 
 # An oh-my-zsh copypath like function
 # Copy current path to clipboard

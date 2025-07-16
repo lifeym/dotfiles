@@ -28,6 +28,7 @@ $env.config = $env.config? | default {} | merge {
 
 # ENV
 $env.EDITOR = "vim"
+$env.PATH ++= ['~/bin']
 
 # Work around for direnv error:
 #   direnv: error Couldn't find a configuration directory for direnv
