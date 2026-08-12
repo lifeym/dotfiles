@@ -30,7 +30,7 @@ $env.config = $env.config? | default {} | merge {
 $env.EDITOR = "vim"
 $env.PATH ++= ['~/bin']
 
-$env.SOPS_AGE_KEY_FILE = ("~/.config/sops/age/key.txt" | path expand)
+$env.SOPS_AGE_KEY_FILE = ("~/.config/sops/age/keys.txt" | path expand)
 
 # Work around for direnv error:
 #   direnv: error Couldn't find a configuration directory for direnv
